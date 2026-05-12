@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Englishkuy | Master English Easily</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* === CSS VARIABLES === */
+        :root {
+            --bg-dark: #070a13;
+            --neon-cyan: #00f3ff;
+            --neon-magenta: #ff00e6;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #b0b5c9;
+        }
+
+        /* === GLOBAL STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* === FLOATING BACKGROUND ELEMENTS === */
+        .bg-shapes {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
+        }
+        .shape1 {
+            width: 300px; height: 300px;
+            background: var(--neon-cyan);
+            top: -10%; left: -10%;
+        }
+        .shape2 {
+            width: 400px; height: 400px;
+            background: var(--neon-magenta);
+            bottom: -20%; right: -10%;
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        .shape3 {
+            width: 200px; height: 200px;
+            background: #7000ff;
+            top: 40%; left: 60%;
+            animation-duration: 12s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+        .glass:hover {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            border-color: rgba(0, 243, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.4s;
+        }
+        nav.scrolled {
+            background: rgba(7, 10, 19, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 15px 50px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo {
+            font-size: 26px; font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* === HERO SECTION === */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-title {
+            font-size: 5.5rem; font-weight: 800;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-magenta);
+        }
+        .typing-container {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            height: 40px;
+        }
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        .btn-cta {
+            padding: 15px 45px;
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--bg-dark);
+            background: var(--neon-cyan);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transition: 0.3s;
+            animation: bounce 2s infinite ease-in-out;
+            text-decoration: none;
+        }
+        .btn-cta:hover {
+            background: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 0 40px var(--neon-cyan);
+            animation: none;
+        }
+
+        /* === SECTION STYLES === */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            background: linear-gradient(90deg, var(--neon-magenta), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === READING SECTION === */
+        .reading-box {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        .reading-box p { margin-bottom: 20px; }
+        .reading-box p:last-child { margin-bottom: 0; }
+
+        /* === VOCABULARY === */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .flip-card {
+            background-color: transparent;
+            height: 400px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flip-card-front {
+            font-size: 2.5rem; font-weight: 800;
+            color: var(--neon-cyan);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+        }
+        .flip-card-back {
+            background: rgba(255, 0, 230, 0.05);
+            border: 1px solid var(--neon-magenta);
+            transform: rotateY(180deg);
+            text-align: left;
+        }
+        .flip-card-back h3 { color: var(--neon-magenta); margin-bottom: 10px; font-size: 1.5rem; }
+        .flip-card-back p { font-size: 1rem; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; }
+        .flip-card-back .example { color: #fff; font-style: italic; font-size: 0.95rem; }
+
+        /* === ACCORDION === */
+        .accordion-container { max-width: 800px; margin: 0 auto; }
+        .accordion-item { margin-bottom: 20px; }
+        .accordion-btn {
+            width: 100%; padding: 25px;
+            font-size: 1.3rem; font-weight: 600;
+            color: #fff; text-align: left;
+            border: none; cursor: pointer;
+            display: flex; justify-content: space-between;
+        }
+        .accordion-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            padding: 0 25px;
+        }
+        .accordion-content p {
+            padding: 20px 0; color: var(--text-muted);
+            line-height: 1.8; font-size: 1.1rem;
+        }
+
+        /* === SPEAKING === */
+        .speaking-container {
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 30px;
+        }
+        .speaking-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 30px; gap: 20px;
+        }
+        .speaking-text {
+            flex: 1; font-size: 1.2rem; color: var(--text-muted); line-height: 1.6;
+        }
+        .btn-listen {
+            padding: 12px 25px; font-size: 1rem; font-weight: 600;
+            color: #fff; background: transparent;
+            border: 2px solid var(--neon-cyan); border-radius: 15px;
+            cursor: pointer; transition: 0.3s;
+            white-space: nowrap;
+        }
+        .btn-listen:hover {
+            background: var(--neon-cyan); color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        /* === QUIZ === */
+        .quiz-container { max-width: 700px; margin: 0 auto; padding: 50px; text-align: center; }
+        #question-text { font-size: 1.6rem; margin-bottom: 40px; color: #fff; }
+        .options-grid { display: flex; flex-direction: column; gap: 20px; }
+        .option-btn {
+            padding: 20px; font-size: 1.1rem; color: var(--text-muted);
+            background: transparent; border: 1px solid var(--glass-border);
+            border-radius: 15px; cursor: pointer; transition: 0.3s;
+            text-align: left;
+        }
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.1); color: #fff;
+            border-color: var(--neon-cyan);
+        }
+        #quiz-feedback { margin-top: 30px; font-size: 1.4rem; font-weight: 800; height: 35px; }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center; padding: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted); font-size: 1rem;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .shake { animation: shake 0.5s; border-color: red !important; color: red !important; box-shadow: 0 0 20px red !important; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+        .flash-green { animation: flash 0.5s forwards; }
+        @keyframes flash {
+            100% { border-color: #00ff00; color: #00ff00; box-shadow: 0 0 20px #00ff00; background: rgba(0,255,0,0.1); }
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 15px; }
+            .nav-links a { margin: 0 10px; }
+            .hero-title { font-size: 3.5rem; }
+            .speaking-row { flex-direction: column; text-align: center; }
+            section { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="logo">Englishkuy</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#reading">Reading</a>
+            <a href="#vocab">Vocab</a>
+            <a href="#grammar">Grammar</a>
+            <a href="#speaking">Speaking</a>
+            <a href="#quiz">Quiz</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1 class="hero-title reveal">Englishkuy</h1>
+        <div class="typing-container reveal">
+            <span class="typing-text"></span>
+        </div>
+        <a href="#reading" class="btn-cta reveal">Start Learning</a>
+    </header>
+
+    <section id="reading">
+        <h2 class="section-title reveal">📖 Short Story</h2>
+        <div class="reading-box glass reveal">
+            <p><strong>A Day in the Life of a Student</strong></p>
+            <p>Alex is a university student. He wakes up early every day. He likes the morning because it is very quiet. He drinks a big cup of coffee and eats some bread for breakfast. He reads his books before he goes to the campus. He studies computer science, and he really loves learning about new technology.</p>
+            <p>After his classes, Alex meets his friends in the library. They sit at a large table and do their homework together. Sometimes, the homework is very difficult, but they always help each other. They talk about their lessons and laugh a lot. Alex thinks that studying with friends is very fun and useful.</p>
+            <p>In the evening, Alex goes back to his house. He is usually very tired, but he feels happy. He cooks a simple dinner, like fried rice or noodles. After dinner, he watches a movie or listens to music to relax. He goes to bed at ten o'clock because he needs a lot of energy for the next day.</p>
+        </div>
+    </section>
+
+    <section id="vocab">
+        <h2 class="section-title reveal">🧠 Important Vocabulary</h2>
+        <div class="cards-container">
+            <div class="flip-card reveal">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Improve</div>
+                    <div class="flip-card-back glass">
+                        <h3>Improve (Verb)</h3>
+                        <p>To make something better than before. If you practice English every day, you will improve.</p>
+                        <p class="example">1. I want to improve my speaking skills.<br>2. She improves her cooking by watching videos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Confident</div>
+                    <div class="flip-card-back glass">
+                        <h3>Confident (Adjective)</h3>
+                        <p>Feeling sure about yourself and your abilities. You are not afraid to make mistakes.</p>
+                        <p class="example">1. He feels confident when he speaks English.<br>2. She is a very confident student.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Opportunity</div>
+                    <div class="flip-card-back glass">
+                        <h3>Opportunity (Noun)</h3>
+                        <p>A good chance to do something special or important. You should take it when it comes.</p>
+                        <p class="example">1. This job is a great opportunity for me.<br>2. Going to university is a good opportunity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card reveal">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Achieve</div>
+                    <div class="flip-card-back glass">
+                        <h3>Achieve (Verb)</h3>
+                        <p>To successfully complete something by working hard. It is the result of your good work.</p>
+                        <p class="example">1. You can achieve your goals if you study hard.<br>2. He achieved a high score on the test.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="grammar">
+        <h2 class="section-title reveal">💡 Grammar Hacks</h2>
+        <div class="accordion-container reveal">
+            <div class="accordion-item glass">
+                <button class="accordion-btn glass">
+                    Present Simple <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>
+                        We use the <strong>Present Simple</strong> to talk about habits, routines, and things that are always true. It is about your daily life. <br><br>
+                        For example, <em>"I drink coffee every morning."</em> This means I do it on Monday, Tuesday, Wednesday, and so on. It is my normal habit.<br><br>
+                        <strong>Formula:</strong> Subject + Verb 1 (add 's' or 'es' for He/She/It).
+                    </p>
+                </div>
+            </div>
+            <div class="accordion-item glass">
+                <button class="accordion-btn glass">
+                    Present Continuous <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>
+                        We use the <strong>Present Continuous</strong> to talk about things that are happening right now, at this very moment. <br><br>
+                        For example, <em>"I am drinking coffee right now."</em> This means the coffee is in my hand at this second. <br><br>
+                        <strong>Formula:</strong> Subject + am/is/are + Verb-ing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="speaking">
+        <h2 class="section-title reveal">🗣️ Speaking Practice</h2>
+        <div class="speaking-container">
+            <div class="speaking-row glass reveal">
+                <div class="speaking-text" id="text1">"Hello, how are you doing today? The weather is really nice, isn't it? I hope you have a wonderful day ahead of you."</div>
+                <button class="btn-listen" onclick="speakText('text1')">🔊 Listen & Practice</button>
+            </div>
+            <div class="speaking-row glass reveal">
+                <div class="speaking-text" id="text2">"Excuse me, can you help me please? I am looking for the library. Could you tell me where it is?"</div>
+                <button class="btn-listen" onclick="speakText('text2')">🔊 Listen & Practice</button>
+            </div>
+            <div class="speaking-row glass reveal">
+                <div class="speaking-text" id="text3">"Thank you very much for your help. I really appreciate it. It is very kind of you."</div>
+                <button class="btn-listen" onclick="speakText('text3')">🔊 Listen & Practice</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz">
+        <h2 class="section-title reveal">🎮 Gamified Quiz</h2>
+        <div class="quiz-container glass reveal" id="quiz-box">
+            <h3 id="question-text">Loading...</h3>
+            <div class="options-grid" id="options"></div>
+            <div id="quiz-feedback"></div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Englishkuy - Final English Project by Online3 TRPL 2E Student.
+    </footer>
+
+    <script>
+        // --- Sticky Navbar ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // --- Typing Effect ---
+        const typingText = document.querySelector('.typing-text');
+        const words = ["Learning English is easy.", "Practice makes perfect.", "Achieve your dreams today."];
+        let wordIndex = 0, charIndex = 0, isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+            if (!isDeleting && charIndex === currentWord.length) { speed = 2000; isDeleting = true; } 
+            else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; speed = 500; }
+            setTimeout(typeEffect, speed);
+        }
+        document.addEventListener("DOMContentLoaded", typeEffect);
+
+        // --- Scroll Reveal ---
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+
+        // --- Accordion ---
+        const accordions = document.querySelectorAll('.accordion-btn');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('span');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.textContent = '+';
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.accordion-btn span').forEach(i => i.textContent = '+');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.textContent = '-';
+                }
+            });
+        });
+
+        // --- Text-to-Speech ---
+        function speakText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'en-US';
+                msg.rate = 0.9;
+                window.speechSynthesis.speak(msg);
+            } else {
+                alert("Sorry, your browser does not support Text-to-Speech.");
+            }
+        }
+
+        // --- Quiz Logic ---
+        const quizData = [
+            { question: "What does 'Improve' mean?", options: ["To make something better.", "To feel sad.", "To eat dinner."], correct: 0 },
+            { question: "Which sentence is Present Continuous?", options: ["I play football every Sunday.", "I am playing football right now.", "I played football yesterday."], correct: 1 },
+            { question: "Where does Alex meet his friends after classes?", options: ["In the park.", "At his house.", "In the library."], correct: 2 }
+        ];
+
+        let currentQ = 0, score = 0;
+        const qText = document.getElementById('question-text'), optsGrid = document.getElementById('options'), feedback = document.getElementById('quiz-feedback');
+
+        function loadQuiz() {
+            if (currentQ >= quizData.length) {
+                document.getElementById('quiz-box').innerHTML = `
+                    <h2 style="color: var(--neon-cyan); margin-bottom: 20px; font-size:2.5rem;">Quiz Completed! 🎉</h2>
+                    <h3 style="font-size:1.5rem;">Your Score: ${score} / ${quizData.length}</h3>
+                    <button class="btn-listen" style="margin-top:30px;" onclick="location.reload()">Try Again</button>`;
+                return;
+            }
+            feedback.textContent = "";
+            const q = quizData[currentQ];
+            qText.textContent = `Q${currentQ + 1}: ${q.question}`;
+            optsGrid.innerHTML = "";
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.classList.add('option-btn');
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(btn, idx, q.correct);
+                optsGrid.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(btn, selected, correct) {
+            const allBtns = optsGrid.querySelectorAll('button');
+            allBtns.forEach(b => b.disabled = true);
+            if (selected === correct) {
+                btn.classList.add('flash-green');
+                feedback.textContent = "Correct! ✨"; feedback.style.color = "#00ff00";
+                score++;
+            } else {
+                btn.classList.add('shake');
+                feedback.textContent = "Wrong! 💔"; feedback.style.color = "red";
+                allBtns[correct].classList.add('flash-green');
+            }
+            setTimeout(() => { currentQ++; loadQuiz(); }, 2000);
+        }
+        loadQuiz();
+    </script>
+</body>
+</html>
